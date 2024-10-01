@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Salário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .calculator-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>Calculadora de Salário</h2>
+        <input type="text" id="nome" placeholder="Seu Nome" required>
+        <input type="number" id="salarioBruto" placeholder="Salário Bruto" required>
+        <input type="number" id="descontos" placeholder="Descontos Adicionais" required>
+        <input type="number" id="filhos" placeholder="Quantidade de Filhos" required>
+        <button onclick="calcularSalario()">Calcular Salário Líquido</button>
+        <p id="resultado" style="margin-top: 20px; font-weight: bold;"></p>
+    </div>
+
+    <script>
+        function calcularSalario() {
+            const nome = document.getElementById('nome').value;
+            const salarioBruto = parseFloat(document.getElementById('salarioBruto').value);
+            const descontos = parseFloat(document.getElementById('descontos').value);
+            const filhos = parseInt(document.getElementById('filhos').value);
+
+            // Calculando o adicional por filhos
+            const adicionalFilhos = filhos * 100;
+
+            // Cálculo do salário líquido
+            const salarioLiquido = salarioBruto + adicionalFilhos - descontos;
+
+            // Exibindo o resultado
+            document.getElementById('resultado').innerText = 
+                `Olá, ${nome}! Seu salário líquido é: R$ ${salarioLiquido.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>
